@@ -1,0 +1,41 @@
+contacts = {}
+
+def add():
+    name = input("Name: ")
+    contacts[name] = {
+        'phone': input("Phone: "),
+        'email': input("Email: "),
+        'address': input("Address: ")
+    }
+
+def view():
+    for name, info in contacts.items():
+        print(f"{name} - {info['phone']}")
+
+def search():
+    q = input("Search by name or phone: ")
+    for name, info in contacts.items():
+        if q in name or q == info['phone']:
+            print(name, info)
+
+def update():
+    name = input("Name to update: ")
+    if name in contacts:
+        contacts[name] = {
+            'phone': input("New Phone: "),
+            'email': input("New Email: "),
+            'address': input("New Address: ")
+        }
+
+def delete():
+    name = input("Name to delete: ")
+    contacts.pop(name, None)
+
+while True:
+    choice = input("\nChoose: add, view, search, update, delete, exit: ")
+    if choice == 'add': add()
+    elif choice == 'view': view()
+    elif choice == 'search': search()
+    elif choice == 'update': update()
+    elif choice == 'delete': delete()
+    elif choice == 'exit': break
